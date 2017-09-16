@@ -1,28 +1,26 @@
 class NegociacoesView extends View {
+  constructor(elemento) {
+    super(elemento);
+  }
 
-    constructor(elemento) {
-        super(elemento);
-    }
-
-    template(negociacoesModel) {
-        return `
+  template(negociacoesModel) {
+    return `
 
         <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
-                </tr>
-            </thead>
+        <thead>
+        <tr>
+            <th onclick="negociacaoController.ordena('data')">DATA</th>
+            <th onclick="negociacaoController.ordena('quantidade')">QUANTIDADE</th>
+            <th onclick="negociacaoController.ordena('valor')">VALOR</th>
+            <th onclick="negociacaoController.ordena('volume')">VOLUME</th>
+        </tr>
+    </thead>
             
             <tbody>
 
-                ${
-                    negociacoesModel.negociacoes.map(
-                        
-                        negociacao => `
+                ${negociacoesModel.negociacoes
+                  .map(
+                    negociacao => `
                             <tr>
                                 <td>${DateHelper.dataParaTexto(negociacao.data)}</td>
                                 <td>${negociacao.quantidade}</td>
@@ -30,8 +28,8 @@ class NegociacoesView extends View {
                                 <td>${negociacao.volume}</td>                                
                             </tr>
                         `
-                    ).join('')       
-                }
+                  )
+                  .join("")}
 
             </tbody>
             
@@ -44,5 +42,5 @@ class NegociacoesView extends View {
         </table>
 
         `;
-    }
+  }
 }

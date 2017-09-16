@@ -6,11 +6,15 @@ class NegociacaoController {
     this._inputQuantidade = $("#quantidade");
     this._inputValor = $("#valor");
 
+    this._ordemAtual = "";
+
     this._listaNegociacoes = new Bind(
       new ListaNegociacoes(),
       new NegociacoesView($("#negociacoesView")),
       "adiciona",
-      "esvazia"
+      "esvazia",
+      "adiciona",
+      "inverteOrdem"
     );
 
     this._mensagem = new Bind(new Mensagem(), new MensagemView($("#mensagemView")), "texto");
@@ -44,6 +48,15 @@ class NegociacaoController {
   apagaListaNegociacoes() {
     this._listaNegociacoes.esvazia();
     this._mensagem.texto = "Lista de negociações apagadas com sucesso!";
+  }
+
+  ordena(coluna) {
+    if (this._ordemAtual == coluna) {
+      this._listaNegociacoes.inverteOrdem();
+    } else {
+      this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna]);
+    }
+    this._ordemAtual = coluna;
   }
 
   _criaNegociacao() {
