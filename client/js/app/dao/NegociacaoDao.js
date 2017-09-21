@@ -18,7 +18,7 @@ class NegociacaoDao {
       request.onerror = e => {
         console.log(e.target.error);
 
-        reject("Não foi possível adicionar negociação");
+        reject("erro ao adicionar negociação");
       };
     });
   }
