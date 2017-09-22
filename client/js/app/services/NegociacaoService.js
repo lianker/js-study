@@ -60,6 +60,33 @@ class NegociacaoService {
         throw new Error(erro);
       });
   }
+
+  cadastra(negociacao) {
+    return ConnectionFactory.getConnection()
+      .then(connection => new NegociacaoDao(connection))
+      .then(dao => dao.adiciona(negociacao))
+      .then(() => "negociação cadastrada com sucesso")
+      .catch(() => {
+        throw new Error("Erro ao cadastrar negociação");
+      });
+  }
+
+  listaTodos() {
+    return ConnectionFactory.getConnection()
+      .then(connection => new NegociacaoDao(connection))
+      .then(dao => dao.listaTodos())
+      .catch(() => {
+        throw new Error("Erro ao buscar negociações");
+      });
+  }
+
+  apaga() {
+    return ConnectionFactory.getConnection()
+      .then(connection => new NegociacaoDao(connection))
+      .then(dao => dao.apagaTodos())
+      .then(() => "Negociações apagadas com sucesso")
+      .catch(error => error);
+  }
 }
 
 /*
