@@ -47,9 +47,9 @@ class NegociacaoService {
 
   obterNegociacoes() {
     return Promise.all([
-      this.obterNegociacoesDaSemana(),
-      this.obterNegociacoesDaSemanaAnterior(),
-      this.obterNegociacoesDaSemanaRetrasada(),
+      this.obtemNegociacoesDaSemana(),
+      this.obtemNegociacoesDaSemanaAnterior(),
+      this.obtemNegociacoesDaSemanaRetrasada(),
     ])
       .then(periodos => {
         let negociacoes = periodos.reduce((dados, periodo) => dados.concat(periodo), []);

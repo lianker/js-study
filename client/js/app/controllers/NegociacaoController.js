@@ -31,11 +31,8 @@ class NegociacaoController {
   importaNegociacoes() {
     let negociacaoService = new NegociacaoService();
 
-    Promise.all([
-      negociacaoService.obtemNegociacoesDaSemana(),
-      negociacaoService.obtemNegociacoesDaSemanaAnterior(),
-      negociacaoService.obtemNegociacoesDaSemanaRetrasada(),
-    ])
+    negociacaoService
+      .obterNegociacoes()
       .then(resultado => {
         resultado
           .reduce((negociacoes, arrNegociacoes) => negociacoes.concat(arrNegociacoes), [])
