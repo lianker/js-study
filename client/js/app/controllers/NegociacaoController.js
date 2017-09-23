@@ -31,9 +31,7 @@ class NegociacaoController {
       })
       .catch(msg => (this._mensagem.texto = msg));
 
-    setInterval(() => {
-      this.importaNegociacoes, 5000;
-    });
+    setInterval(this.importaNegociacoes.bind(this), 5000);
   }
 
   importaNegociacoes() {
