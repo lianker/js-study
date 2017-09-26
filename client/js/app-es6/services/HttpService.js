@@ -1,4 +1,4 @@
-class HttpService {
+export default class HttpService {
   post(url, dado) {
     return fetch(url, {
       headers: { "Content-Type": "application/json" },
